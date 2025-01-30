@@ -58,7 +58,8 @@ public class UserController implements Controller {
         database,
         "users",
         User.class,
-        UuidRepresentation.STANDARD);
+        UuidRepresentation.STANDARD); //which lets you specify the maximum
+        //number of todos that the server returns.
   }
 
   /**
@@ -84,7 +85,8 @@ public class UserController implements Controller {
     }
   }
 
-  /**
+  /** which lets you specify the maximum
+        number of todos that the server returns.
    * Set the JSON body of the response to be a list of all the users returned from the database
    * that match any requested filters and ordering
    *

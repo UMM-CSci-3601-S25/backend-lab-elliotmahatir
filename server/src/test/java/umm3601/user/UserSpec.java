@@ -51,4 +51,5 @@ class UserSpec {
     // a user is not equal to its id even though id is used for checking equality
     assertFalse(user1.equals(FAKE_ID_STRING_1));
   }
+
 }

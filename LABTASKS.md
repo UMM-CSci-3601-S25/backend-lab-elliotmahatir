@@ -70,8 +70,9 @@ It aids in checking what the server gives us when we make requests to it, which 
 really helpful when you're trying to debug what your server gives you.
 
 To use Thunder Client (once it's installed), open it from the sidebar.
-The icon is a circle with a lightning bolt in the middle.
-
+The icon is a circle with a lightning ook over the directory structure of the project before you start
+making changes to it, and consider the various tools that we are
+using to manage our project.
 <img src = "https://user-images.githubusercontent.com/32685970/214179360-2ab176da-dc4f-43f8-8519-4ade1660ef89.png" alt = "Thunder Client in VS Code sidebar" height = 300 />
 
 This should add a button in the top of the sidebar labelled `New Request`, click it.
@@ -160,7 +161,7 @@ Now, you are ready to get started working on the coding part of this lab!
 
 ### Using the board
 
-You'll then need to keep an eye on your board throughout the
+You'll then need to keep an eye on your board throughout thefile:///home/mosta044/Downloads/backend-lab-elliotmahatir/server/build/reports/checkstyle/main.html
 lab, using it to guide your decisions about what to work on,
 updating issues as you make progress, etc. When you start work
 on an issue, move it to the "In progress" track.
@@ -270,6 +271,7 @@ which would return the first 12 completed to-dos owned by
 Blanche ordered by category.
 
 :bangbang: If you have a combination of `limit` with other filters,
+      // You can als
 make sure you do the limiting step **last** so you don't miss any items.
 If you limit first to, say, 10 todos, then you might get down to the
 requested 10 todos, but then have later filters bring that down to 7
@@ -285,7 +287,8 @@ Write up your answers to these questions in a Google Doc and turn that in via Ca
 
 - [ ] **Make sure that everyone in your group has edit privileges on the document.**
 - [ ] **Make sure that the link you turn in gives us at least comment privileges.**
-- [ ] **Include the URL of the GitHub repository for your group at the top of the
+- [ ] **Include the URL of the GitHub repository for your group at the top of th
+      // You can alse
       GDoc. This will make it easier for us to figure out which team is "Snoozing Llamas".**
 
 :bangbang: Make sure that your answers address the _purpose_ of
@@ -297,6 +300,7 @@ _why_ we'd want to have it.
 
 - [ ] :question: _2_ What role is Gradle playing in the
       project, and what is the purpose of `build.gradle`?
+      // You can als
 
 - [ ] :question: _3_ What is the purpose of Github Actions?
 

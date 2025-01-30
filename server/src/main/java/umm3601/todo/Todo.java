@@ -1,4 +1,4 @@
-package umm3601.user;
+package umm3601.todo;
 
 import org.mongojack.Id;
 import org.mongojack.ObjectId;
@@ -19,8 +19,7 @@ import org.mongojack.ObjectId;
 // check in CheckStyle so that we don't get a failed
 // build when Gradle runs CheckStyle.
 @SuppressWarnings({"VisibilityModifier"})
-public class User {
-
+public class Todo {
   @ObjectId @Id
   // By default Java field names shouldn't start with underscores.
   // Here, though, we *have* to use the name `_id` to match the
@@ -28,19 +27,17 @@ public class User {
   @SuppressWarnings({"MemberName"})
   public String _id;
 
-  public String name;
-  public int age;
-  public String company;
-  public String email;
-  public String avatar;
-  public String role;
+  public String owner;
+  public boolean status;
+  public String body;
+  public String category;
 
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof User)) {
+    if (!(obj instanceof Todo)) {
       return false;
     }
-    User other = (User) obj;
+    Todo other = (Todo) obj;
     return _id.equals(other._id);
   }
 
@@ -61,6 +58,6 @@ public class User {
   // the better bet.
   @Override
   public String toString() {
-    return name;
+    return body;
   }
 }
