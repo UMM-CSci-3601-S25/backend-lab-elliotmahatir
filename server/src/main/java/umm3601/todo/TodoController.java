@@ -4,9 +4,6 @@ import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.regex;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Map;
@@ -105,7 +102,9 @@ public class TodoController implements Controller {
 
     if (ctx.queryParamMap().containsKey(LIMIT_KEY)) {
       int limit = Integer.parseInt(ctx.queryParam(LIMIT_KEY));
-      while (matchingTodos.size() > limit) matchingTodos.remove(matchingTodos.size() - 1);
+      while (matchingTodos.size() > limit) {
+        matchingTodos.remove(matchingTodos.size() - 1);
+      }
     }
     // Set the JSON body of the response to be the list of todos returned by the database.
     // According to the Javalin documentation (https://javalin.io/documentation#context),
@@ -116,19 +115,7 @@ public class TodoController implements Controller {
     ctx.status(HttpStatus.OK);
   }
 
-  /**
-   * Construct a Bson filter document to use in the `find` method based on the
-   * query parameters from the context.
-   *
-   * This checks for the presence of the `age`, `company`, and `role` query
-   * parameters and constructs a filter document that will match todos with
-   * the specified values for those fields.
-   *
-   * @param ctx a Javalin HTTP context, which contains the query parameters
-   *    used to construct the filter
-   * @return a Bson filter document that can be used in the `find` method
-   *   to filter the database collection of todos
-   */
+
   private Bson constructFilter(Context ctx) {
     List<Bson> filters = new ArrayList<>(); // start with an empty list of filters
 
@@ -138,17 +125,23 @@ public class TodoController implements Controller {
     }
     if (ctx.queryParamMap().containsKey(STATUS_KEY)) {
         boolean value1 = ctx.queryParam(STATUS_KEY).equals("complete");
-        if (value1) filters.add(eq(STATUS_KEY, value1));
-        boolean value2 = ctx.queryParam(STATUS_KEY).equals("incomplete"); 
-        if (value2) filters.add(eq(STATUS_KEY, !value2));
-        if (!value1 && !value2) filters.add(eq(STATUS_KEY, null));
+        if (value1) {
+          filters.add(eq(STATUS_KEY, value1));
+        }
+        boolean value2 = ctx.queryParam(STATUS_KEY).equals("incomplete");
+        if (value2) {
+          filters.add(eq(STATUS_KEY, !value2));
+        }
+        if (!value1 && !value2) {
+          filters.add(eq(STATUS_KEY, null));
+        }
     }
     if (ctx.queryParamMap().containsKey(CATEGORY_KEY)) {
         Pattern pattern = Pattern.compile(Pattern.quote(ctx.queryParam(CATEGORY_KEY)), Pattern.CASE_INSENSITIVE);
         filters.add(regex(CATEGORY_KEY, pattern));
     }
     if (ctx.queryParamMap().containsKey(BODY_KEY)) {
-      Pattern pattern = Pattern.compile(Pattern.quote(ctx.queryParam(BODY_KEY)) , Pattern.CASE_INSENSITIVE);
+      Pattern pattern = Pattern.compile(Pattern.quote(ctx.queryParam(BODY_KEY)), Pattern.CASE_INSENSITIVE);
       filters.add(regex("body", pattern));
     }
 
@@ -159,31 +152,12 @@ public class TodoController implements Controller {
     return combinedFilter;
   }
 
-  /**
-   * Construct a Bson sorting document to use in the `sort` method based on the
-   * query parameters from the context.
-   *
-   * This checks for the presence of the `sortby` and `sortorder` query
-   * parameters and constructs a sorting document that will sort todos by
-   * the specified field in the specified order. If the `sortby` query
-   * parameter is not present, it defaults to "name". If the `sortorder`
-   * query parameter is not present, it defaults to "asc".
-   *
-   * @param ctx a Javalin HTTP context, which contains the query parameters
-   *   used to construct the sorting order
-   * @return a Bson sorting document that can be used in the `sort` method
-   *  to sort the database collection of todos
-   */
   private Bson constructSortingOrder(Context ctx) {
-    // Sort the results. Use the `sortby` query param (default "name")
-    // as the field to sort by, and the query param `sortorder` (default
-    // "asc") to specify the sort order.
     String sortBy = Objects.requireNonNullElse(ctx.queryParam(ORDER_KEY), "owner");
     String sortOrder = Objects.requireNonNullElse(ctx.queryParam("sortorder"), "asc");
     Bson sortingOrder = sortOrder.equals("desc") ?  Sorts.descending(sortBy) : Sorts.ascending(sortBy);
     return sortingOrder;
   }
-  
   /**
    * Setup routes for the `todo` collection endpoints.
    *
@@ -217,8 +191,5 @@ public class TodoController implements Controller {
 
     // List todos, filtered using query parameters
     server.get(API_TODOS, this::getTodos);
-
-
-
-}
+  }
 }

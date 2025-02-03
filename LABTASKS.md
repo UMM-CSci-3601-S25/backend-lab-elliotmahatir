@@ -271,7 +271,6 @@ which would return the first 12 completed to-dos owned by
 Blanche ordered by category.
 
 :bangbang: If you have a combination of `limit` with other filters,
-      // You can als
 make sure you do the limiting step **last** so you don't miss any items.
 If you limit first to, say, 10 todos, then you might get down to the
 requested 10 todos, but then have later filters bring that down to 7
@@ -288,7 +287,6 @@ Write up your answers to these questions in a Google Doc and turn that in via Ca
 - [ ] **Make sure that everyone in your group has edit privileges on the document.**
 - [ ] **Make sure that the link you turn in gives us at least comment privileges.**
 - [ ] **Include the URL of the GitHub repository for your group at the top of th
-      // You can alse
       GDoc. This will make it easier for us to figure out which team is "Snoozing Llamas".**
 
 :bangbang: Make sure that your answers address the _purpose_ of
@@ -300,7 +298,6 @@ _why_ we'd want to have it.
 
 - [ ] :question: _2_ What role is Gradle playing in the
       project, and what is the purpose of `build.gradle`?
-      // You can als
 
 - [ ] :question: _3_ What is the purpose of Github Actions?
 
